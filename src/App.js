@@ -11,9 +11,13 @@ function App() {
         type: 'pie',
         toolbar: {
           show: false 
-        }
+        },
+          stroke: {
+            width: 0
+          }
       },
       labels: ['Timer Event Source', 'JMS Queue Event Source', 'File Event Source', 'RV Event Source', 'HTTP Event Source'],
+      stroke: { width: 0, segmentscolors: ['transparent'] },
       colors: ['#4285F4', '#EA4335', '#FBBC04', '#34A853', '#FF6D01'], 
       plotOptions: {
         pie: {
@@ -23,10 +27,7 @@ function App() {
             enabled: false,
           },
           donut: {
-            size: '100%', 
-          },
-          stroke: {
-            width: 0,
+            size: '75%', 
           },
         },
       },
@@ -38,13 +39,19 @@ function App() {
         position: 'right',
         fontSize: '14px',
         markers: {
-          width: 14,
-          height: 14,
+          width: 4.5,  
+          height: 4.5,
+          radius: 50, 
+          shape: 'circle', 
+          fillColors: ['#4285F4', '#EA4335', '#FBBC04', '#34A853', '#FF6D01'], 
         },
         formatter: (seriesName, opts) => {
-          return `<span style="font-weight: 700;padding-left:10px;">${opts.w.globals.series[opts.seriesIndex]}</span> ${seriesName}`;
+            return `<span style="font-weight: 700;padding-left:10px;">${opts.w.globals.series[opts.seriesIndex]}</span> ${seriesName}`;
         },
-      },
+        itemMargin: {
+            vertical: 10, 
+        },
+    },
       responsive: [
         {
           breakpoint: 640,
@@ -80,11 +87,15 @@ function App() {
   const total = [2, 5, 2, 1, 1].reduce((acc, value) => acc + value, 0);
 
   return (
-    <div className="justify-center flex items-center">
-      <div className='max-w-[558px] relative'>
+    <div className="justify-center flex items-center min-h-screen flex-col">
+      <div className='max-w-[558px] relative flex items-center justify-center'>
         <div id="chart" className='w-full'></div>
-        <div className="bg-white absolute text-black text-xl sm:left-[23.5%] min-[549px]:left-[42%] left-[43%] sm:top-[37%] min-[549px]:top-[31%] top-[30%] font-semibold rounded-full size-14 min-[549px]:size-20 sm:size-[99.61px] flex items-center justify-center shadow-md">
+        <div className="bg-white absolute text-black text-xl sm:left-[24.5%] min-[549px]:left-[42%] left-[43%] sm:top-[37%] min-[549px]:top-[31%] top-[24%] font-semibold rounded-full size-14 min-[549px]:size-20 sm:size-[99.61px] flex items-center justify-center shadow-md">
           {total}
+        </div>
+      </div>
+      <div className="legend-container flex flex-col items-center">
+        <div id="legend" className="flex flex-col items-center mt-5">
         </div>
       </div>
     </div>

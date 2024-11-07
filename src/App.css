@@ -1,3 +1,13 @@
 .apexcharts-datalabels{
   display: none !important;
 }
+.apexcharts-legend.apx-legend-position-right {
+  justify-content: center !important;
+ }
+
+ .apexcharts-legend-marker {
+  height: 4px !important;
+  width: 4px !important;
+  border-radius: 50%;
+  overflow: hidden;
+}
